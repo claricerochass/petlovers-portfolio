@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petlovers - Jornadas de Usuários</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #7FCCC4;
+            --color-secondary: #E8C5C5;
+            --color-background: #F5F3F0;
+            --color-card-bg: #FFFFFF;
+            --color-text-primary: #2D2D2D;
+            --color-text-secondary: #7A7A7A;
+            --color-accent-1: #FFD4D4;
+            --color-accent-2: #D4E8FF;
+            --color-accent-3: #E8D4FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .target-audience {
+            background: var(--color-primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .journeys-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .journey-card {
+            background: var(--color-card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .journey-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .journey-card:nth-child(1) {
+            border-top: 4px solid var(--color-accent-1);
+        }
+
+        .journey-card:nth-child(2) {
+            border-top: 4px solid var(--color-accent-2);
+        }
+
+        .journey-card:nth-child(3) {
+            border-top: 4px solid var(--color-accent-3);
+        }
+
+        .journey-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .journey-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .journey-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-profile {
+            background: var(--color-background);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .user-profile strong {
+            color: var(--color-primary);
+        }
+
+        .journey-steps {
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--color-primary);
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary);
+            border-radius: 50%;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .step-content {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .step-action {
+            background: #FFF9E6;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .step-emotion {
+            background: #FFE6F0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .insights-section {
+            background: var(--color-card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .insights-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .insight-item {
+            background: var(--color-background);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .insight-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .insight-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .emotion-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed var(--color-background);
+        }
+
+        .emotion-tag {
+            background: linear-gradient(135deg, #FFE6E6, #FFD4D4);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .journeys-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="brand-logo">petlovers</h1>
+            <p class="subtitle">Jornadas de Usuários</p>
+        </div>
+
+        <div class="target-audience">
+            <strong>🎯 Público-Alvo:</strong> Classe B e C, urbanos, descontraídos, moradores de apartamentos que
+            frequentam parques nos finais de semana.
+        </div>
+
+        <div class="journeys-grid">
+            <!-- Jornada 1: Marina -->
+            <div class="journey-card">
+                <div class="journey-header">
+                    <div class="journey-icon">👩‍🎨</div>
+                    <h2 class="journey-title">Jornada 1: Marina</h2>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">A Primeira Adoção</p>
+                </div>
+
+                <div class="user-profile">
+                    <strong>Nome:</strong> Marina, 28 anos<br>
+                    <strong>Ocupação:</strong> Designer gráfica<br>
+                    <strong>Moradia:</strong> Apartamento de 2 quartos em São Paulo<br>
+                    <strong>Motivação:</strong> Sempre quis ter um pet, mas esperou ter estabilidade financeira
+                </div>
+
+                <div class="journey-steps">
+                    <div class="step">
+                        <div class="step-title">1. Descoberta (Sábado, 10h)</div>
+                        <div class="step-content">
+                            Marina está no sofá navegando nas redes sociais e vê um anúncio do Petlovers com animais
+                            fofos ilustrados.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Baixa o app por curiosidade</div>
+                        <div class="step-emotion">😊 <strong>Emoção:</strong> Curiosa, esperançosa</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">2. Primeiro Acesso (Sábado, 10h15)</div>
+                        <div class="step-content">
+                            Abre o app e vê a tela de boas-vindas com ilustrações charmosas. Lê: "Seu novo melhor amigo
+                            está te esperando!"
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Toca em "Começar" e cria sua conta
+                            rapidamente</div>
+                        <div class="step-emotion">🤩 <strong>Emoção:</strong> Animada, encantada com o design</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">3. Exploração (Sábado, 10h20)</div>
+                        <div class="step-content">
+                            Navega pela home e vê pets próximos. Filtra por "Gato" pois mora em apartamento.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Adiciona 3 gatos aos favoritos</div>
+                        <div class="step-emotion">😍 <strong>Emoção:</strong> Empolgada, mas um pouco insegura sobre
+                            qual escolher</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">4. Pesquisa Detalhada (Sábado, 11h)</div>
+                        <div class="step-content">
+                            Clica no perfil de "Bella Meow" - uma gata branca a 8km. Lê a descrição: calma, ideal para
+                            apartamento, já castrada.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Toca no botão de chat para falar com o
+                            responsável</div>
+                        <div class="step-emotion">🤞 <strong>Emoção:</strong> Esperançosa, nervosa</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">5. Primeiro Contato (Sábado, 11h30)</div>
+                        <div class="step-content">
+                            Envia mensagem: "Olá! Vi a Bella e me apaixonei. Ela ainda está disponível?" Recebe resposta
+                            em 20 minutos confirmando.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Agenda visita para o domingo no parque</div>
+                        <div class="step-emotion">🎉 <strong>Emoção:</strong> Muito animada, ansiosa</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">6. Adoção (Domingo, 16h)</div>
+                        <div class="step-content">
+                            Encontra a Bella no parque, se conectam imediatamente. Finaliza o processo de adoção.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Tira foto com a Bella e compartilha no app
+                        </div>
+                        <div class="step-emotion">❤️ <strong>Emoção:</strong> Realizada, feliz, grata</div>
+                    </div>
+                </div>
+
+                <div class="emotion-flow">
+                    <span class="emotion-tag">Curiosa</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Animada</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Empolgada</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Nervosa</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Ansiosa</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Realizada</span>
+                </div>
+            </div>
+
+            <!-- Jornada 2: Carlos -->
+            <div class="journey-card">
+                <div class="journey-header">
+                    <div class="journey-icon">👨‍👩‍👦</div>
+                    <h2 class="journey-title">Jornada 2: Carlos</h2>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Adoção para a Família</p>
+                </div>
+
+                <div class="user-profile">
+                    <strong>Nome:</strong> Carlos, 35 anos<br>
+                    <strong>Ocupação:</strong> Analista de TI<br>
+                    <strong>Moradia:</strong> Apartamento de 3 quartos com esposa e filho de 6 anos<br>
+                    <strong>Motivação:</strong> Filho pediu um cachorro de aniversário
+                </div>
+
+                <div class="journey-steps">
+                    <div class="step">
+                        <div class="step-title">1. Pesquisa Inicial (Terça-feira, 21h)</div>
+                        <div class="step-content">
+                            Após colocar o filho para dormir, pesquisa "adoção de cachorro SP" e encontra o Petlovers
+                            nos resultados.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Baixa o app e cria conta</div>
+                        <div class="step-emotion">💪 <strong>Emoção:</strong> Determinado, mas cauteloso
+                            (responsabilidade)</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">2. Definindo Critérios (Terça-feira, 21h15)</div>
+                        <div class="step-content">
+                            Conversa com a esposa sobre o tipo ideal de cachorro. Precisam de: porte médio, dócil, bom
+                            com crianças.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Usa filtros no app (categoria: Cão, porte
+                            médio)</div>
+                        <div class="step-emotion">🎯 <strong>Emoção:</strong> Focado, prático</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">3. Seleção (Quarta-feira, 12h30)</div>
+                        <div class="step-content">
+                            Navega pelos perfis durante o intervalo do trabalho. Encontra "Moni Charlie" - Beagle, 2
+                            anos, descrito como "ótimo com crianças".
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Adiciona aos favoritos e mostra para a esposa
+                            à noite</div>
+                        <div class="step-emotion">😊 <strong>Emoção:</strong> Otimista, mas quer validação da família
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">4. Decisão Familiar (Quarta-feira, 20h)</div>
+                        <div class="step-content">
+                            Mostra os favoritos para esposa e filho. Filho se apaixona pelo Moni Charlie.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Envia mensagem pelo chat perguntando sobre
+                            comportamento e histórico</div>
+                        <div class="step-emotion">🤞 <strong>Emoção:</strong> Esperançoso, responsável</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">5. Conhecendo o Pet (Sábado, 15h)</div>
+                        <div class="step-content">
+                            Família vai ao parque conhecer o Moni Charlie. Cachorro brinca gentilmente com o filho.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Decide adotar no mesmo dia</div>
+                        <div class="step-emotion">😄 <strong>Emoção:</strong> Feliz, aliviado por ter encontrado o match
+                            perfeito</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">6. Integração (Semana seguinte)</div>
+                        <div class="step-content">
+                            Usa o app para acessar dicas de cuidados.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Compartilha foto do filho com Moni no perfil
+                        </div>
+                        <div class="step-emotion">🏡 <strong>Emoção:</strong> Satisfeito, parte da comunidade Petlovers
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emotion-flow">
+                    <span class="emotion-tag">Determinado</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Focado</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Otimista</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Esperançoso</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Feliz</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Satisfeito</span>
+                </div>
+            </div>
+
+            <!-- Jornada 3: Juliana -->
+            <div class="journey-card">
+                <div class="journey-header">
+                    <div class="journey-icon">🏥</div>
+                    <h2 class="journey-title">Jornada 3: Juliana</h2>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Resgate e Adoção Responsável</p>
+                </div>
+
+                <div class="user-profile">
+                    <strong>Nome:</strong> Juliana, 24 anos<br>
+                    <strong>Ocupação:</strong> Estudante de veterinária e voluntária em ONG<br>
+                    <strong>Moradia:</strong> Apartamento compartilhado (2 colegas)<br>
+                    <strong>Motivação:</strong> Quer ajudar animais resgatados e encontrar um companheiro
+                </div>
+
+                <div class="journey-steps">
+                    <div class="step">
+                        <div class="step-title">1. Uso Profissional (Segunda-feira, 9h)</div>
+                        <div class="step-content">
+                            A ONG onde trabalha usa o Petlovers para divulgar animais resgatados. Juliana já conhece o
+                            app, mas nunca pensou em adotar para si.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Cadastra 2 novos cães resgatados no sistema
+                        </div>
+                        <div class="step-emotion">💼 <strong>Emoção:</strong> Profissional, focada na missão</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">2. Conexão Pessoal (Segunda-feira, 14h)</div>
+                        <div class="step-content">
+                            Ao cadastrar "Ziggy", um Shiba Inu resgatado, se encanta. Ziggy tem histórico difícil, mas
+                            está se recuperando bem.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Pensa "e se eu adotasse?"</div>
+                        <div class="step-emotion">💭 <strong>Emoção:</strong> Conflito interno (já tem muito trabalho,
+                            mas sente conexão)</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">3. Reflexão (Segunda a Quinta)</div>
+                        <div class="step-content">
+                            Visita Ziggy todos os dias na ONG. Percebe que criou vínculo especial.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Conversa com colegas de apartamento sobre
+                            adotar</div>
+                        <div class="step-emotion">🤔 <strong>Emoção:</strong> Esperançosa, mas preocupada com
+                            responsabilidade</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">4. Decisão (Sexta-feira, 18h)</div>
+                        <div class="step-content">
+                            Colegas aprovam e se oferecem para ajudar.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Oficialmente inicia processo de adoção pelo
+                            app</div>
+                        <div class="step-emotion">💪 <strong>Emoção:</strong> Determinada, emocionada</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">5. Preparação (Fim de semana)</div>
+                        <div class="step-content">
+                            Usa recursos do app para preparar o apartamento. Compra itens necessários.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Agenda para buscar Ziggy na segunda</div>
+                        <div class="step-emotion">😊 <strong>Emoção:</strong> Ansiosa, empolgada</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">6. Nova Vida (Segunda-feira seguinte)</div>
+                        <div class="step-content">
+                            Leva Ziggy para casa.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Atualiza perfil no app como "adotante",
+                            compartilha história de resgate</div>
+                        <div class="step-emotion">❤️ <strong>Emoção:</strong> Realizada, orgulhosa, inspirada a
+                            continuar ajudando</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">7. Engajamento Contínuo (Semanas seguintes)</div>
+                        <div class="step-content">
+                            Usa o chat para trocar dicas com outros adotantes. Recomenda o app para amigos.
+                        </div>
+                        <div class="step-action">💡 <strong>Ação:</strong> Vira embaixadora informal do Petlovers</div>
+                        <div class="step-emotion">🌟 <strong>Emoção:</strong> Parte ativa da comunidade, satisfeita
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emotion-flow">
+                    <span class="emotion-tag">Profissional</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Conflito</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Esperançosa</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Determinada</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Ansiosa</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Realizada</span>
+                    <span class="emotion-tag">→</span>
+                    <span class="emotion-tag">Satisfeita</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section">
+            <h2 class="insights-title">💡 Insights para o Design</h2>
+            <div class="insights-grid">
+                <div class="insight-item">
+                    <h3>🚀 Onboarding Simples e Rápido</h3>
+                    <p>Usuários querem começar a explorar rapidamente. Design acolhedor e ilustrações charmosas são
+                        cruciais.</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>🔍 Filtros Intuitivos</h3>
+                    <p>Por categoria (cão, gato, aves, peixes), por distância (proximidade é importante), e por
+                        características (porte, idade, temperamento).</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>💬 Chat Integrado</h3>
+                    <p>Comunicação direta e rápida com responsáveis. Essencial para tirar dúvidas e agendar visitas.</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>❤️ Favoritos</h3>
+                    <p>Permite comparar opções. Útil para decisões familiares.</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>📋 Perfil do Pet Detalhado</h3>
+                    <p>História, características, fotos. Informações sobre saúde e comportamento.</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>🏘️ Comunidade</h3>
+                    <p>Compartilhamento de histórias de sucesso. Dicas e suporte entre adotantes.</p>
+                </div>
+
+                <div class="insight-item">
+                    <h3>🎨 Design Emocional</h3>
+                    <p>Ilustrações fofas e acolhedoras. Cores suaves e minimalistas. Experiência que transmite carinho e
+                        responsabilidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

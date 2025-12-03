@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petlovers - Portfólio de Projeto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F2F7F5;
+            color: #2D2D2D;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #76B5AF;
+            color: #FFFFFF;
+            padding: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            padding: 0 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .logo .highlight {
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: #FFFFFF;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-footer {
+            padding: 0 2rem;
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            background: #F2F7F5;
+            overflow-y: auto;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        .section-header {
+            padding: 4rem 4rem 2rem;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: #666666;
+            font-weight: 300;
+        }
+
+        /* Content Body */
+        .section-body {
+            padding: 3rem 4rem;
+        }
+
+        /* Benchmarking Styles */
+        .competitors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .competitor-card {
+            background: #FFFFFF;
+            border: 1px solid #E8F0F0;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-card:hover {
+            border-color: #76B5AF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .competitor-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .competitor-card .origin {
+            font-size: 0.875rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #333333;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            margin-right: 0.75rem;
+            color: #000000;
+        }
+
+        /* Journey Styles */
+        .journey-cards {
+            display: grid;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .journey-card {
+            background: #FFFFFF;
+            border: 1px solid #E8F0F0;
+            padding: 3rem;
+        }
+
+        .journey-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .journey-card .persona {
+            background: #E8F0F0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .journey-card .persona h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-steps {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .step {
+            padding-left: 2rem;
+            border-left: 2px solid #E0E0E0;
+        }
+
+        .step h5 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* App Demo Styles */
+        .app-demo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 0;
+        }
+
+        .phone-mockup {
+            width: 375px;
+            height: 812px;
+            border: 12px solid #000000;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 30px;
+            background: #000000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+        }
+
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .app-features {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: #FFFFFF;
+            padding: 2rem;
+            border: 1px solid #E0E0E0;
+        }
+
+        .feature-box h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-box p {
+            font-size: 0.9rem;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: #FFFFFF;
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid #E0E0E0;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #76B5AF;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .section-header,
+            .section-body {
+                padding: 2rem;
+            }
+
+            .phone-mockup {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><span class="highlight">Petlovers</span> Portfolio</h1>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" onclick="showSection('overview')">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Visão Geral</span>
+                </div>
+                <div class="nav-item" onclick="showSection('benchmarking')">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Benchmarking</span>
+                </div>
+                <div class="nav-item" onclick="showSection('journeys')">
+                    <i class="fa-solid fa-route"></i>
+                    <span>Jornadas de Usuários</span>
+                </div>
+                <div class="nav-item" onclick="showSection('app')">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <span>App Funcional</span>
+                </div>
+            </nav>
+
+            <div class="nav-footer">
+                © 2024 Petlovers Project
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="section-header">
+                    <h2>Projeto Petlovers</h2>
+                    <p>Conectando corações a patinhas através de design e tecnologia</p>
+                </div>
+                <div class="section-body">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Competidores Analisados</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Jornadas de Usuários</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Telas Funcionais</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Design Minimalista</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 4rem;">
+                        <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Sobre o Projeto</h3>
+                        <p style="font-size: 1.125rem; line-height: 1.8; color: #333333; max-width: 800px;">
+                            O Petlovers é um aplicativo de adoção de animais que visa simplificar e humanizar
+                            o processo de adoção responsável no Brasil. Com um design clean e minimalista,
+                            o app conecta pessoas que desejam adotar pets a ONGs e protetores de animais.
+                        </p>
+                        <p
+                            style="font-size: 1.125rem; line-height: 1.8; color: #333333; max-width: 800px; margin-top: 1.5rem;">
+                            Este portfólio apresenta todo o processo de pesquisa, design e desenvolvimento
+                            do projeto, incluindo análise competitiva, jornadas de usuários e o protótipo funcional.
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 4rem;">
+                        <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Metodologia</h3>
+                        <div class="app-features">
+                            <div class="feature-box">
+                                <h4>1. Pesquisa</h4>
+                                <p>Análise competitiva de 12+ apps e plataformas de adoção no Brasil e no mundo.</p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>2. UX Research</h4>
+                                <p>Criação de 3 personas e jornadas detalhadas representando diferentes perfis de
+                                    adotantes.</p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>3. Design</h4>
+                                <p>Desenvolvimento de identidade visual minimalista com foco em usabilidade e emoção.
+                                </p>
+                            </div>
+                            <div class="feature-box">
+                                <h4>4. Desenvolvimento</h4>
+                                <p>Implementação de protótipo funcional com HTML, CSS e JavaScript vanilla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benchmarking Section -->
+            <section id="benchmarking" class="content-section">
+                <div class="section-header">
+                    <h2>Benchmarking</h2>
+                    <p>Análise competitiva do mercado de adoção de animais</p>
+                </div>
+                <div class="section-body">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Apps Brasileiros</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Líderes Internacionais</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">30M</div>
+                            <div class="stat-label">Animais Abandonados (BR)</div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.75rem; margin: 3rem 0 1.5rem;">Principais Competidores</h3>
+
+                    <div class="competitors-grid">
+                        <div class="competitor-card">
+                            <h3>Hyppet</h3>
+                            <p class="origin">Brasil • Líder Nacional</p>
+                            <ul class="feature-list">
+                                <li>Interface tipo "Tinder"</li>
+                                <li>1000+ adoções realizadas</li>
+                                <li>Geolocalização</li>
+                                <li>Carteira de vacinas</li>
+                                <li>Integração com ONGs</li>
+                            </ul>
+                        </div>
+
+                        <div class="competitor-card">
+                            <h3>Petfinder</h3>
+                            <p class="origin">EUA • Líder Global</p>
+                            <ul class="feature-list">
+                                <li>Busca visual por foto</li>
+                                <li>Quiz de personalidade</li>
+                                <li>Filtros avançados</li>
+                                <li>Recursos educacionais</li>
+                                <li>Base de dados massiva</li>
+                            </ul>
+                        </div>
+
+                        <div class="competitor-card">
+                            <h3>Adote Petz</h3>
+                            <p class="origin">Brasil • Rede Física</p>
+                            <ul class="feature-list">
+                                <li>146+ ONGs parceiras</li>
+                                <li>Espaços físicos em lojas</li>
+                                <li>Avaliação veterinária</li>
+                                <li>1100+ adoções em 2025</li>
+                                <li>Credibilidade da marca</li>
+                            </ul>
+                        </div>
+
+                        <div class="competitor-card">
+                            <h3>Tiutiu</h3>
+                            <p class="origin">Brasil • Inovador</p>
+                            <ul class="feature-list">
+                                <li>Vídeos curtos (TikTok)</li>
+                                <li>Alto engajamento</li>
+                                <li>Apelo jovem</li>
+                                <li>Interface moderna</li>
+                                <li>Conexão rápida</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 4rem; padding: 2rem; background: #F5F5F5;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Insights Principais</h3>
+                        <ul class="feature-list" style="margin-left: 1rem;">
+                            <li style="padding: 0.75rem 0; font-size: 1rem;">Nenhum competidor brasileiro possui design
+                                tão clean e minimalista</li>
+                            <li style="padding: 0.75rem 0; font-size: 1rem;">Oportunidade para recursos de comunidade e
+                                matching inteligente</li>
+                            <li style="padding: 0.75rem 0; font-size: 1rem;">Mercado fragmentado com espaço para líder
+                                de UX premium</li>
+                            <li style="padding: 0.75rem 0; font-size: 1rem;">Foco em transparência do processo é
+                                diferencial competitivo</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="benchmarking.html" target="_blank"
+                            style="display: inline-block; padding: 1rem 2rem; background: #000000; color: #FFFFFF; text-decoration: none; font-weight: 500;">
+                            Ver Relatório Completo
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Journeys Section -->
+            <section id="journeys" class="content-section">
+                <div class="section-header">
+                    <h2>Jornadas de Usuários</h2>
+                    <p>Mapeamento de experiências e necessidades dos adotantes</p>
+                </div>
+                <div class="section-body">
+                    <div class="journey-cards">
+                        <!-- Journey 1 -->
+                        <div class="journey-card">
+                            <h3>👩‍🎨 Marina - A Primeira Adoção</h3>
+                            <div class="persona">
+                                <h4>Perfil</h4>
+                                <p><strong>Idade:</strong> 28 anos<br>
+                                    <strong>Profissão:</strong> Designer<br>
+                                    <strong>Objetivo:</strong> Adotar seu primeiro gato para fazer companhia
+                                </p>
+                            </div>
+                            <div class="journey-steps">
+                                <div class="step">
+                                    <h5>1. Descoberta</h5>
+                                    <p>Marina pesquisa sobre adoção de gatos e encontra o Petlovers. Fica encantada com
+                                        o design clean e fotos dos pets.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>2. Exploração</h5>
+                                    <p>Usa filtros para encontrar gatos adultos e calmos. Salva 3 favoritos e lê sobre
+                                        suas personalidades.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>3. Contato</h5>
+                                    <p>Inicia conversa com ONG via chat integrado. Tira dúvidas sobre cuidados e
+                                        processo de adoção.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>4. Adoção</h5>
+                                    <p>Agenda visita, conhece a gatinha pessoalmente e finaliza adoção. Recebe checklist
+                                        de cuidados pelo app.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Journey 2 -->
+                        <div class="journey-card">
+                            <h3>👨‍👩‍👦 Carlos - Adoção para a Família</h3>
+                            <div class="persona">
+                                <h4>Perfil</h4>
+                                <p><strong>Idade:</strong> 35 anos<br>
+                                    <strong>Profissão:</strong> Engenheiro<br>
+                                    <strong>Objetivo:</strong> Encontrar um cachorro dócil para o filho de 6 anos
+                                </p>
+                            </div>
+                            <div class="journey-steps">
+                                <div class="step">
+                                    <h5>1. Pesquisa</h5>
+                                    <p>Busca por cachorros de porte médio, bons com crianças. Usa filtros de
+                                        temperamento.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>2. Decisão em Família</h5>
+                                    <p>Compartilha perfis favoritos com a esposa. Juntos escolhem 2 candidatos para
+                                        conhecer.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>3. Visita</h5>
+                                    <p>Leva o filho para conhecer os cachorros. A criança se conecta imediatamente com
+                                        um deles.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>4. Preparação</h5>
+                                    <p>Recebe orientações sobre adaptação do pet. Compra itens essenciais através de
+                                        parceiros do app.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Journey 3 -->
+                        <div class="journey-card">
+                            <h3>🏥 Juliana - Resgate e Adoção Responsável</h3>
+                            <div class="persona">
+                                <h4>Perfil</h4>
+                                <p><strong>Idade:</strong> 42 anos<br>
+                                    <strong>Profissão:</strong> Veterinária voluntária<br>
+                                    <strong>Objetivo:</strong> Adotar um pet resgatado com necessidades especiais
+                                </p>
+                            </div>
+                            <div class="journey-steps">
+                                <div class="step">
+                                    <h5>1. Busca Específica</h5>
+                                    <p>Procura por pets com necessidades especiais ou idosos. Lê histórias de resgate.
+                                    </p>
+                                </div>
+                                <div class="step">
+                                    <h5>2. Conexão Emocional</h5>
+                                    <p>Encontra um cachorro idoso com histórico médico detalhado. Se identifica com a
+                                        causa.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>3. Avaliação Técnica</h5>
+                                    <p>Como veterinária, analisa o histórico de saúde e tratamentos necessários.</p>
+                                </div>
+                                <div class="step">
+                                    <h5>4. Adoção Consciente</h5>
+                                    <p>Adota o pet e se compromete com cuidados especiais. Compartilha a jornada no app.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem; text-align: center;">
+                        <a href="jornadas.html" target="_blank"
+                            style="display: inline-block; padding: 1rem 2rem; background: #000000; color: #FFFFFF; text-decoration: none; font-weight: 500;">
+                            Ver Jornadas Completas
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- App Section -->
+            <section id="app" class="content-section">
+                <div class="section-header">
+                    <h2>App Funcional</h2>
+                    <p>Protótipo interativo do aplicativo Petlovers</p>
+                </div>
+                <div class="section-body">
+                    <div class="app-demo-container">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <iframe src="index.html"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.75rem; margin: 3rem 0 1.5rem; text-align: center;">Funcionalidades
+                        Implementadas</h3>
+
+                    <div class="app-features">
+                        <div class="feature-box">
+                            <h4>🏠 Tela Home</h4>
+                            <p>Busca por localização, filtros por categoria (Cão, Gato, Aves, Peixes) e grid de pets
+                                disponíveis.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💬 Chat</h4>
+                            <p>Comunicação direta com ONGs e protetores para tirar dúvidas sobre os pets.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>❤️ Favoritos</h4>
+                            <p>Sistema de favoritos com persistência local para comparar pets salvos.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h4>👤 Perfil</h4>
+                            <p>Área pessoal com configurações, histórico de adoções e preferências.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 4rem; padding: 2rem; background: #F5F5F5;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Tecnologias Utilizadas</h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                            <div style="text-align: center; padding: 1rem;">
+                                <i class="fa-brands fa-html5" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                                <p style="font-weight: 500;">HTML5</p>
+                            </div>
+                            <div style="text-align: center; padding: 1rem;">
+                                <i class="fa-brands fa-css3-alt" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                                <p style="font-weight: 500;">CSS3</p>
+                            </div>
+                            <div style="text-align: center; padding: 1rem;">
+                                <i class="fa-brands fa-js" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                                <p style="font-weight: 500;">JavaScript</p>
+                            </div>
+                            <div style="text-align: center; padding: 1rem;">
+                                <i class="fa-solid fa-mobile-screen"
+                                    style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
+                                <p style="font-weight: 500;">Mobile First</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="index.html" target="_blank"
+                            style="display: inline-block; padding: 1rem 2rem; background: #000000; color: #FFFFFF; text-decoration: none; font-weight: 500; margin-right: 1rem;">
+                            Abrir App em Tela Cheia
+                        </a>
+                        <a href="apresentacao.html" target="_blank"
+                            style="display: inline-block; padding: 1rem 2rem; border: 1px solid #000000; color: #000000; text-decoration: none; font-weight: 500;">
+                            Ver Pitch Deck
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active to clicked nav item
+            event.currentTarget.classList.add('active');
+
+            // Scroll to top
+            document.querySelector('.main-content').scrollTop = 0;
+        }
+    </script>
+</body>
+
+</html>

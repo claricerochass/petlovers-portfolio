@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Petlovers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/splash_cat_dog_illustration_1764769069939.png"
+                alt="Petlovers Illustration" class="splash-image">
+            <h1 class="splash-logo font-serif">petlovers</h1>
+            <p class="splash-tagline">Seu novo melhor amigo está te esperando!</p>
+        </div>
+        <div style="width: 100%;">
+            <button class="btn-primary" onclick="startApp()">Começar</button>
+            <div class="login-link" style="text-align: center;">Já tenho conta</div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app-container">
+
+        <!-- Header (Visible on Home) -->
+        <header class="app-header" id="main-header">
+            <div class="location-bar">
+                <div class="location-text">
+                    <i class="fa-solid fa-location-dot location-icon"></i>
+                    São Paulo, SP
+                </div>
+                <i class="fa-solid fa-sliders filter-icon"></i>
+            </div>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" placeholder="Buscar">
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="content-area">
+
+            <!-- HOME SCREEN -->
+            <section id="home-screen" class="screen active">
+                <h2 class="section-title">Categorias</h2>
+                <div class="categories-row">
+                    <div class="category-item active" onclick="filterCategory('dog')">
+                        <div class="category-icon">🐶</div>
+                        <span class="category-label">Cão</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('cat')">
+                        <div class="category-icon">🐱</div>
+                        <span class="category-label">Gato</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('bird')">
+                        <div class="category-icon">🐦</div>
+                        <span class="category-label">Aves</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('fish')">
+                        <div class="category-icon">🐠</div>
+                        <span class="category-label">Peixes</span>
+                    </div>
+                </div>
+
+                <div class="pet-grid">
+                    <!-- Pet Card 1 -->
+                    <div class="pet-card" onclick="openPetDetail('Moni Charlie')">
+                        <div class="pet-image-container">
+                            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_beagle_portrait_1764702577083.png"
+                                alt="Moni Charlie" class="pet-image">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Moni Charlie</h3>
+                            <p class="pet-distance">Distância 10km</p>
+                        </div>
+                    </div>
+
+                    <!-- Pet Card 2 -->
+                    <div class="pet-card" onclick="openPetDetail('Bella Meow')">
+                        <div class="pet-image-container">
+                            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_pomeranian_portrait_1764702592300.png"
+                                alt="Bella Meow" class="pet-image">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Bella Meow</h3>
+                            <p class="pet-distance">Distância 8km</p>
+                        </div>
+                    </div>
+
+                    <!-- Pet Card 3 -->
+                    <div class="pet-card" onclick="openPetDetail('Ziggy')">
+                        <div class="pet-image-container">
+                            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_shiba_portrait_1764702606727.png"
+                                alt="Ziggy" class="pet-image">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Ziggy</h3>
+                            <p class="pet-distance">Distância 10km</p>
+                        </div>
+                    </div>
+
+                    <!-- Pet Card 4 -->
+                    <div class="pet-card" onclick="openPetDetail('Theo')">
+                        <div class="pet-image-container">
+                            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_poodle_portrait_1764702623912.png"
+                                alt="Theo" class="pet-image">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Theo</h3>
+                            <p class="pet-distance">Distância 8km</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAT SCREEN -->
+            <section id="chat-screen" class="screen">
+                <h2 class="section-title">Mensagens</h2>
+                <div class="chat-list">
+                    <div class="chat-item">
+                        <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_beagle_portrait_1764702577083.png"
+                            alt="Abrigo Feliz" class="chat-avatar">
+                        <div class="chat-details">
+                            <div class="chat-name">Abrigo Patinhas</div>
+                            <div class="chat-preview">Olá! O Moni Charlie ainda está disponível?</div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: #999;">10:30</span>
+                    </div>
+                    <div class="chat-item">
+                        <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_shiba_portrait_1764702606727.png"
+                            alt="Dona Maria" class="chat-avatar">
+                        <div class="chat-details">
+                            <div class="chat-name">Resgate Animal</div>
+                            <div class="chat-preview">Podemos agendar uma visita para sábado?</div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: #999;">Ontem</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAVORITES SCREEN -->
+            <section id="favorites-screen" class="screen">
+                <h2 class="section-title">Meus Favoritos</h2>
+                <div class="pet-grid">
+                    <div class="pet-card">
+                        <div class="pet-image-container">
+                            <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/pet_shiba_portrait_1764702606727.png"
+                                alt="Ziggy" class="pet-image">
+                        </div>
+                        <div class="pet-info">
+                            <h3>Ziggy</h3>
+                            <p class="pet-distance">Distância 10km</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROFILE SCREEN -->
+            <section id="profile-screen" class="screen">
+                <div class="profile-header">
+                    <div class="profile-avatar-container">
+                        <img src="/Users/clarice/.gemini/antigravity/brain/6497484c-8846-4f8e-bf21-7ff25c9e7780/uploaded_image_1764771961507.png"
+                            alt="Profile" class="profile-avatar">
+                    </div>
+                    <h2 class="profile-name">Clarice</h2>
+                    <p class="profile-location">São Paulo, SP</p>
+                </div>
+
+                <div class="profile-menu">
+                    <div class="menu-item">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Editar Perfil</span>
+                    </div>
+                    <div class="menu-item">
+                        <i class="fa-solid fa-paw"></i>
+                        <span>Minhas Adoções</span>
+                    </div>
+                    <div class="menu-item">
+                        <i class="fa-regular fa-bell"></i>
+                        <span>Notificações</span>
+                    </div>
+                    <div class="menu-item">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Configurações</span>
+                    </div>
+                    <div class="menu-item" style="color: #F44336;">
+                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #F44336;"></i>
+                        <span>Sair</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="switchTab('home')">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('chat')">
+                <i class="fa-regular fa-comment-dots"></i>
+                <span>Chat</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('favorites')">
+                <i class="fa-regular fa-heart"></i>
+                <span>Favoritos</span>
+            </div>
+            <div class="nav-item" onclick="switchTab('profile')">
+                <i class="fa-regular fa-user"></i>
+                <span>Perfil</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        function startApp() {
+            const splash = document.getElementById('splash-screen');
+            const app = document.getElementById('app-container');
+
+            splash.style.opacity = '0';
+            splash.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+                app.style.opacity = '1';
+            }, 500);
+        }
+
+        function switchTab(tabName) {
+            // Update Nav Icons
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Find the clicked nav item (simplified logic)
+            const navItems = document.querySelectorAll('.nav-item');
+            if (tabName === 'home') navItems[0].classList.add('active');
+            if (tabName === 'chat') navItems[1].classList.add('active');
+            if (tabName === 'favorites') navItems[2].classList.add('active');
+            if (tabName === 'profile') navItems[3].classList.add('active');
+
+            // Show Screen
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(tabName + '-screen').classList.add('active');
+
+            // Toggle Header Visibility
+            const header = document.getElementById('main-header');
+            if (tabName === 'home') {
+                header.style.display = 'block';
+            } else {
+                header.style.display = 'none';
+            }
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            // Mock filter functionality
+            console.log('Filtering by:', category);
+        }
+
+        function openPetDetail(name) {
+            console.log('Opening detail for:', name);
+        }
+    </script>
+</body>
+
+</html>

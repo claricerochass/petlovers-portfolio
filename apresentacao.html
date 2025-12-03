@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petlovers - Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #7FCCC4;
+            --color-secondary: #E8C5C5;
+            --color-background: #F5F3F0;
+            --color-text-primary: #2D2D2D;
+            --color-text-secondary: #7A7A7A;
+            --color-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a1a;
+            color: var(--color-text-primary);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 4rem;
+            background: var(--color-white);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Slide 1 - Cover */
+        .slide-cover {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #5AB8B0 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .tagline {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.8;
+        }
+
+        /* Slide 2 - Problem */
+        .slide-problem {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+        }
+
+        .slide-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--color-text-primary);
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #F44336;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Slide 3 - Solution */
+        .slide-solution {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .solution-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .solution-text {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Slide 4 - Market */
+        .slide-market {
+            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 100%);
+        }
+
+        .market-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .market-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #01579B;
+        }
+
+        .market-box ul {
+            list-style: none;
+            font-size: 1.125rem;
+        }
+
+        .market-box li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .market-box li::before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Slide 5 - Competitive Advantage */
+        .slide-advantage {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 100%);
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 6px solid #F57F17;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .advantage-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #F57F17;
+        }
+
+        .advantage-card p {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Slide 6 - Business Model */
+        .slide-business {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .revenue-streams {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .revenue-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .revenue-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .revenue-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .revenue-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #7B1FA2;
+        }
+
+        /* Slide 7 - Roadmap */
+        .slide-roadmap {
+            background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+        }
+
+        .timeline {
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--color-primary);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-phase {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Slide 8 - Team */
+        .slide-team {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+        }
+
+        .team-values {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #C2185B;
+        }
+
+        /* Slide 9 - Call to Action */
+        .slide-cta {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #5AB8B0 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .cta-text {
+            font-size: 1.75rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--color-primary);
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: #5AB8B0;
+            transform: scale(1.1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            z-index: 1000;
+        }
+
+        .highlight {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .emphasis {
+            background: linear-gradient(120deg, #FFF9C4 0%, #FFF59D 100%);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Cover -->
+        <div class="slide slide-cover active">
+            <h1 class="brand-logo">petlovers</h1>
+            <p class="tagline">Conectando corações a patinhas</p>
+            <p class="subtitle">Pitch Deck • Dezembro 2024</p>
+        </div>
+
+        <!-- Slide 2: O Problema -->
+        <div class="slide slide-problem">
+            <h2 class="slide-title">😢 O Problema</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--color-text-secondary);">
+                O Brasil enfrenta uma <span class="emphasis">crise de abandono animal</span> que precisa de soluções
+                digitais modernas.
+            </p>
+            <div class="problem-stats">
+                <div class="stat-box">
+                    <div class="stat-number">30M</div>
+                    <div class="stat-label">Animais abandonados no Brasil (OMS)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">170 mil</div>
+                    <div class="stat-label">Animais em abrigos esperando adoção</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Das pessoas desistem por processo complexo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Baixa</div>
+                    <div class="stat-label">Visibilidade de ONGs e protetores</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: A Solução -->
+        <div class="slide slide-solution">
+            <h2 class="slide-title">✨ A Solução: Petlovers</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--color-text-secondary);">
+                Um app <span class="emphasis">premium, intuitivo e emocionalmente envolvente</span> que simplifica a
+                adoção responsável.
+            </p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🎨</div>
+                    <h3 class="solution-title">Design Premium</h3>
+                    <p class="solution-text">Interface clean e minimalista que encanta à primeira vista</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">📍</div>
+                    <h3 class="solution-title">Geolocalização</h3>
+                    <p class="solution-text">Encontre pets próximos a você em tempo real</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">💬</div>
+                    <h3 class="solution-title">Chat Integrado</h3>
+                    <p class="solution-text">Comunicação direta com ONGs e protetores</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">❤️</div>
+                    <h3 class="solution-title">Favoritos</h3>
+                    <p class="solution-text">Compare e salve seus pets favoritos</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🔍</div>
+                    <h3 class="solution-title">Filtros Inteligentes</h3>
+                    <p class="solution-text">Encontre o pet ideal para seu estilo de vida</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🤝</div>
+                    <h3 class="solution-title">Comunidade</h3>
+                    <p class="solution-text">Compartilhe histórias e dicas de adoção</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mercado -->
+        <div class="slide slide-market">
+            <h2 class="slide-title">📊 Oportunidade de Mercado</h2>
+            <div class="market-content">
+                <div class="market-box">
+                    <h3>🎯 Público-Alvo</h3>
+                    <ul>
+                        <li>Idade: 24-40 anos</li>
+                        <li>Classe B e C</li>
+                        <li>Urbanos (apartamentos)</li>
+                        <li>Descontraídos e modernos</li>
+                        <li>Frequentam parques</li>
+                        <li>Valorizam design e UX</li>
+                    </ul>
+                </div>
+                <div class="market-box">
+                    <h3>📈 Potencial</h3>
+                    <ul>
+                        <li>54% dos lares brasileiros têm pets</li>
+                        <li>Mercado pet: R$ 51 bilhões/ano</li>
+                        <li>Crescimento de 27% em adoções</li>
+                        <li>12+ apps competidores (fragmentado)</li>
+                        <li>Nenhum com design premium</li>
+                        <li>Espaço para líder de mercado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Vantagem Competitiva -->
+        <div class="slide slide-advantage">
+            <h2 class="slide-title">🚀 Vantagem Competitiva</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--color-text-secondary);">
+                O que nos diferencia dos <span class="emphasis">12+ competidores</span> no mercado?
+            </p>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <h3>🎨 Design Único</h3>
+                    <p>Nenhum competidor brasileiro possui design tão clean e minimalista. Nosso app é visualmente
+                        superior e cria conexão emocional imediata.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>🎯 UX Premium</h3>
+                    <p>Experiência mobile-first com micro-animações, transições suaves e interface intuitiva que encanta
+                        o público urbano classe B/C.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>🤖 Matching Inteligente</h3>
+                    <p>Sistema de recomendação baseado em estilo de vida, espaço disponível e preferências - inspirado
+                        nos líderes internacionais.</p>
+                </div>
+                <div class="advantage-card">
+                    <h3>🏘️ Comunidade Ativa</h3>
+                    <p>Recursos sociais que nenhum competidor brasileiro oferece: histórias de sucesso, eventos locais,
+                        dicas compartilhadas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Modelo de Negócio -->
+        <div class="slide slide-business">
+            <h2 class="slide-title">💰 Modelo de Negócio</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--color-text-secondary);">
+                Múltiplas fontes de receita com <span class="emphasis">impacto social positivo</span>
+            </p>
+            <div class="revenue-streams">
+                <div class="revenue-card">
+                    <div class="revenue-icon">🏪</div>
+                    <h3 class="revenue-title">Parcerias Pet Shops</h3>
+                    <p class="solution-text">Comissão em vendas de produtos para novos adotantes</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-icon">⭐</div>
+                    <h3 class="revenue-title">Premium Features</h3>
+                    <p class="solution-text">Recursos avançados para ONGs e protetores</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-icon">📢</div>
+                    <h3 class="revenue-title">Publicidade Segmentada</h3>
+                    <p class="solution-text">Anúncios de marcas pet-friendly</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-icon">🎁</div>
+                    <h3 class="revenue-title">Kit Adoção</h3>
+                    <p class="solution-text">Pacotes de boas-vindas para novos tutores</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-icon">🏥</div>
+                    <h3 class="revenue-title">Serviços Veterinários</h3>
+                    <p class="solution-text">Parcerias com clínicas e telemedicina</p>
+                </div>
+                <div class="revenue-card">
+                    <div class="revenue-icon">📊</div>
+                    <h3 class="revenue-title">Dados e Insights</h3>
+                    <p class="solution-text">Analytics para ONGs e pesquisas de mercado</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Roadmap -->
+        <div class="slide slide-roadmap">
+            <h2 class="slide-title">🗺️ Roadmap</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-phase">Fase 1 • Q1 2025</div>
+                        <h3 class="timeline-title">MVP & Lançamento</h3>
+                        <p class="solution-text">• Desenvolvimento do app core<br>• Parcerias com 20 ONGs<br>•
+                            Lançamento em SP<br>• 1.000 usuários</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-phase">Fase 2 • Q2 2025</div>
+                        <h3 class="timeline-title">Expansão</h3>
+                        <p class="solution-text">• Expansão RJ e BH<br>• 100 ONGs parceiras<br>• Chat com IA<br>• 10.000
+                            usuários</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-phase">Fase 3 • Q3-Q4 2025</div>
+                        <h3 class="timeline-title">Monetização</h3>
+                        <p class="solution-text">• Modelo premium<br>• Parcerias comerciais<br>• Nacional<br>• 50.000
+                            usuários</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Time e Valores -->
+        <div class="slide slide-team">
+            <h2 class="slide-title">💪 Nossos Valores</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--color-text-secondary);">
+                Construindo um negócio com <span class="emphasis">propósito e impacto social</span>
+            </p>
+            <div class="team-values">
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3 class="value-title">Amor pelos Animais</h3>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3 class="value-title">Excelência em Design</h3>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3 class="value-title">Inovação Constante</h3>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3 class="value-title">Impacto Social</h3>
+                </div>
+            </div>
+            <div
+                style="margin-top: 3rem; background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #C2185B;">🎯 Meta de Impacto</h3>
+                <p style="font-size: 1.5rem; color: var(--color-text-secondary); line-height: 1.8;">
+                    Facilitar <strong style="color: #C2185B;">10.000 adoções</strong> no primeiro ano,
+                    reduzindo o número de animais abandonados e conectando famílias a seus novos melhores amigos.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Call to Action -->
+        <div class="slide slide-cta">
+            <h2 class="cta-title">Vamos Juntos?</h2>
+            <p class="cta-text">
+                Transforme vidas. Construa um negócio de impacto.<br>
+                Seja parte da revolução da adoção responsável no Brasil.
+            </p>
+            <button class="cta-button">Vamos Começar! 🐾</button>
+            <p style="margin-top: 3rem; font-size: 1.25rem; opacity: 0.8;">
+                contato@petlovers.com.br
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="previousSlide()">←</button>
+        <button class="nav-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Touch navigation for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+    </script>
+</body>
+
+</html>

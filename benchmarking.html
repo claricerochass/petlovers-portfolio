@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarking - Mercado de Adoção de Animais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #7FCCC4;
+            --color-secondary: #E8C5C5;
+            --color-background: #F5F3F0;
+            --color-card-bg: #FFFFFF;
+            --color-text-primary: #2D2D2D;
+            --color-text-secondary: #7A7A7A;
+            --color-success: #4CAF50;
+            --color-warning: #FF9800;
+            --color-danger: #F44336;
+            --color-info: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--color-primary), #5AB8B0);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: var(--color-card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .summary-card h3 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .competitors-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .competitor-card {
+            background: var(--color-background);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .competitor-card.featured {
+            border: 2px solid var(--color-primary);
+            background: linear-gradient(135deg, #FFFFFF, #F0FFFE);
+        }
+
+        .competitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .competitor-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .competitor-origin {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .badge {
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-brazil {
+            background: #FFE082;
+            color: #F57F17;
+        }
+
+        .badge-international {
+            background: #B3E5FC;
+            color: #01579B;
+        }
+
+        .badge-leader {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .feature-icon {
+            font-size: 1.25rem;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .pros,
+        .cons {
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .pros {
+            background: #E8F5E9;
+        }
+
+        .cons {
+            background: #FFEBEE;
+        }
+
+        .pros h4,
+        .cons h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pros ul,
+        .cons ul {
+            list-style: none;
+            font-size: 0.875rem;
+        }
+
+        .pros li::before {
+            content: "✓ ";
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .cons li::before {
+            content: "✗ ";
+            color: var(--color-danger);
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .comparison-table th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .comparison-table tr:hover {
+            background: #F5F5F5;
+        }
+
+        .check-yes {
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .check-no {
+            color: var(--color-danger);
+            font-weight: bold;
+        }
+
+        .check-partial {
+            color: var(--color-warning);
+            font-weight: bold;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #FFF9C4, #FFF59D);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #F57F17;
+        }
+
+        .insight-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: #F57F17;
+        }
+
+        .insight-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-primary);
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #E1F5FE, #B3E5FC);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .recommendations h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #01579B;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(1, 87, 155, 0.1);
+            font-size: 0.95rem;
+        }
+
+        .recommendations li::before {
+            content: "💡 ";
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="brand-logo">petlovers</h1>
+            <p class="subtitle">Benchmarking - Mercado de Adoção de Animais</p>
+            <p class="date">Dezembro 2024</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Resumo Executivo
+            </h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>12+</h3>
+                    <p>Competidores Identificados</p>
+                </div>
+                <div class="summary-card">
+                    <h3>8</h3>
+                    <p>Apps Brasileiros</p>
+                </div>
+                <div class="summary-card">
+                    <h3>4</h3>
+                    <p>Líderes Internacionais</p>
+                </div>
+                <div class="summary-card">
+                    <h3>1000+</h3>
+                    <p>Adoções Facilitadas (Hyppet)</p>
+                </div>
+            </div>
+            <p style="font-size: 1rem; line-height: 1.8; color: var(--color-text-secondary);">
+                O mercado de adoção de animais no Brasil está em crescimento, com diversas plataformas digitais
+                competindo para conectar pets a novos lares. Os apps brasileiros focam em geolocalização e
+                integração com ONGs, enquanto os internacionais oferecem recursos mais avançados de matching
+                e personalização. O público-alvo principal são pessoas de 24-40 anos, urbanas, que buscam
+                praticidade e transparência no processo de adoção.
+            </p>
+        </div>
+
+        <!-- Competidores Brasileiros -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🇧🇷</span>
+                Competidores Brasileiros
+            </h2>
+
+            <div class="competitors-grid">
+                <!-- Hyppet -->
+                <div class="competitor-card featured">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Hyppet</h3>
+                            <p class="competitor-origin">Brasil • Lançado em 2019</p>
+                        </div>
+                        <div>
+                            <span class="badge badge-brazil">Brasil</span>
+                            <span class="badge badge-leader">Líder</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Descrito como "Tinder para adoção de pets", o Hyppet é um dos apps mais populares no Brasil,
+                        com mais de 1.000 adoções bem-sucedidas.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">📍</span>
+                            <span>Geolocalização</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <span>Filtros personalizados</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏥</span>
+                            <span>Carteira de vacinas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🤝</span>
+                            <span>Integração com ONGs</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💬</span>
+                            <span>Chat integrado</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📱</span>
+                            <span>iOS e Android</span>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Pontos Fortes</h4>
+                            <ul>
+                                <li>Maior base de ONGs cadastradas</li>
+                                <li>Acompanhamento pós-adoção</li>
+                                <li>Interface intuitiva tipo swipe</li>
+                                <li>Histórico comprovado (1000+ adoções)</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ Pontos Fracos</h4>
+                            <ul>
+                                <li>Design pode ser mais moderno</li>
+                                <li>Falta de recursos de comunidade</li>
+                                <li>Limitado a cães e gatos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adote.me -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Adote.me</h3>
+                            <p class="competitor-origin">Brasil • Atualizado em Nov 2025</p>
+                        </div>
+                        <span class="badge badge-brazil">Brasil</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Plataforma focada em simplificar o processo de adoção com perfis detalhados e comunicação
+                        direta.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">📸</span>
+                            <span>Perfis detalhados</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💬</span>
+                            <span>Chat direto</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔔</span>
+                            <span>Notificações personalizadas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏥</span>
+                            <span>Histórico de saúde</span>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Pontos Fortes</h4>
+                            <ul>
+                                <li>Interface limpa e moderna</li>
+                                <li>Perfis muito detalhados</li>
+                                <li>Recentemente atualizado</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ Pontos Fracos</h4>
+                            <ul>
+                                <li>Base de usuários menor</li>
+                                <li>Menos ONGs parceiras</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tiutiu -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Tiutiu</h3>
+                            <p class="competitor-origin">Brasil • Atualizado em Jul 2024</p>
+                        </div>
+                        <span class="badge badge-brazil">Brasil</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Inovador com seção "Tiutiu Tok" - vídeos curtos de pets estilo TikTok.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🎥</span>
+                            <span>Vídeos curtos (TikTok)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⚡</span>
+                            <span>Conexão rápida</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📱</span>
+                            <span>Interface moderna</span>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Pontos Fortes</h4>
+                            <ul>
+                                <li>Formato inovador com vídeos</li>
+                                <li>Engajamento alto</li>
+                                <li>Apelo para público jovem</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ Pontos Fracos</h4>
+                            <ul>
+                                <li>Pode ser superficial</li>
+                                <li>Foco em entretenimento vs. adoção</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adote Petz -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Adote Petz</h3>
+                            <p class="competitor-origin">Brasil • Rede Petz</p>
+                        </div>
+                        <span class="badge badge-brazil">Brasil</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Maior rede sustentável de adoção no Brasil, com 146+ ONGs parceiras e 1.100+ adoções em 2025.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🏪</span>
+                            <span>Espaços físicos (lojas)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🤝</span>
+                            <span>146+ ONGs parceiras</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏥</span>
+                            <span>Avaliação veterinária</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📋</span>
+                            <span>Formulário online</span>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Pontos Fortes</h4>
+                            <ul>
+                                <li>Credibilidade da marca Petz</li>
+                                <li>Maior rede de ONGs</li>
+                                <li>Opção de visita presencial</li>
+                                <li>Suporte veterinário</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ Pontos Fracos</h4>
+                            <ul>
+                                <li>Menos foco no digital</li>
+                                <li>Processo pode ser mais lento</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PetPonto -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">PetPonto</h3>
+                            <p class="competitor-origin">Brasil • Fundado em 2021</p>
+                        </div>
+                        <span class="badge badge-brazil">Brasil</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        "TinderPet" com geolocalização para conectar ONGs e adotantes em todo o Brasil.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">📍</span>
+                            <span>Geolocalização avançada</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">👆</span>
+                            <span>Interface swipe</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🐕</span>
+                            <span>700+ perfis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outros Apps Brasileiros -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Outros Apps Brasileiros</h3>
+                            <p class="competitor-origin">Diversos</p>
+                        </div>
+                        <span class="badge badge-brazil">Brasil</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        <strong>Adota Pet Go:</strong> Desenvolvido por estudantes, chat integrado<br>
+                        <strong>Pet Perfeito:</strong> Plataforma colaborativa com sugestões por localização<br>
+                        <strong>MeAuDote:</strong> Reúne pets de ONGs e Centros de Zoonose<br>
+                        <strong>Viu Meu Pet:</strong> Adoção + busca de pets perdidos
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competidores Internacionais -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🌎</span>
+                Competidores Internacionais
+            </h2>
+
+            <div class="competitors-grid">
+                <!-- Petfinder -->
+                <div class="competitor-card featured">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Petfinder</h3>
+                            <p class="competitor-origin">EUA • Líder Global</p>
+                        </div>
+                        <div>
+                            <span class="badge badge-international">Internacional</span>
+                            <span class="badge badge-leader">Líder</span>
+                        </div>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Pioneiro e líder global em adoção de pets, conectando milhares de abrigos na América do Norte.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <span>Busca visual (foto)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎯</span>
+                            <span>Quiz "My Match"</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🗂️</span>
+                            <span>Filtros avançados</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span>Recursos educacionais</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏥</span>
+                            <span>Perfis detalhados</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔔</span>
+                            <span>Alertas personalizados</span>
+                        </div>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ Pontos Fortes</h4>
+                            <ul>
+                                <li>Maior base de dados global</li>
+                                <li>Tecnologia de busca visual</li>
+                                <li>Quiz de personalidade para matching</li>
+                                <li>Interface muito polida</li>
+                                <li>Recursos educacionais completos</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ Pontos Fracos</h4>
+                            <ul>
+                                <li>Não disponível no Brasil</li>
+                                <li>Processo pode ser lento</li>
+                                <li>Algumas ONGs não respondem</li>
+                                <li>Interface pode ser complexa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WeRescue -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">WeRescue</h3>
+                            <p class="competitor-origin">EUA</p>
+                        </div>
+                        <span class="badge badge-international">Internacional</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        App abrangente com diversos tipos de animais (cães, gatos, aves, cavalos).
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🐾</span>
+                            <span>Múltiplas espécies</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <span>Filtros extensivos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔔</span>
+                            <span>Notificações em tempo real</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adopt A Pet -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">Adopt A Pet</h3>
+                            <p class="competitor-origin">EUA • Parceria Petco</p>
+                        </div>
+                        <span class="badge badge-international">Internacional</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        Interface limpa com verificação através da parceria com Petco Foundation.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">✅</span>
+                            <span>Verificação de ONGs</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔄</span>
+                            <span>Rehome (recolocação)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📧</span>
+                            <span>Alertas por email</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <span>Background checks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BarkBuddy -->
+                <div class="competitor-card">
+                    <div class="competitor-header">
+                        <div>
+                            <h3 class="competitor-name">BarkBuddy</h3>
+                            <p class="competitor-origin">EUA</p>
+                        </div>
+                        <span class="badge badge-international">Internacional</span>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">
+                        "Tinder para cães" com interface moderna de swipe focada em cachorros.
+                    </p>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">👆</span>
+                            <span>Swipe interface</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🐕</span>
+                            <span>Foco em cães</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📍</span>
+                            <span>Pets próximos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela Comparativa -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                Comparação de Funcionalidades
+            </h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Funcionalidade</th>
+                        <th>Hyppet</th>
+                        <th>Adote.me</th>
+                        <th>Tiutiu</th>
+                        <th>Adote Petz</th>
+                        <th>Petfinder</th>
+                        <th>Petlovers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Geolocalização</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Filtros por categoria</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chat integrado</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sistema de favoritos</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perfil detalhado dos pets</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integração com ONGs</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓✓</td>
+                        <td class="check-yes">✓✓</td>
+                        <td class="check-yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vídeos dos pets</strong></td>
+                        <td class="check-no">✗</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-yes">✓✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-no">✗</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carteira de vacinas</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-no">✗</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acompanhamento pós-adoção</strong></td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-no">✗</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Design moderno/minimalista</strong></td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-yes">✓✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recursos de comunidade</strong></td>
+                        <td class="check-no">✗</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-partial">◐</td>
+                        <td class="check-no">✗</td>
+                        <td class="check-yes">✓</td>
+                        <td class="check-no">✗</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Insights e Oportunidades -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">💡</span>
+                Insights e Oportunidades para Petlovers
+            </h2>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>🎨 Design Diferenciado</h3>
+                    <p>
+                        Nenhum competidor brasileiro possui um design tão clean e minimalista quanto o Petlovers.
+                        Esta é uma grande vantagem competitiva para atrair o público urbano de classe B/C.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>📱 Experiência Mobile-First</h3>
+                    <p>
+                        Muitos apps ainda têm interfaces desatualizadas. O Petlovers pode se destacar com
+                        animações suaves, micro-interações e uma UX premium.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>🤝 Comunidade Engajada</h3>
+                    <p>
+                        Oportunidade: criar recursos de comunidade (compartilhamento de histórias, dicas, eventos)
+                        que nenhum competidor brasileiro oferece de forma robusta.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>🎥 Conteúdo em Vídeo</h3>
+                    <p>
+                        Apenas o Tiutiu explora vídeos. Petlovers pode integrar vídeos curtos de forma mais
+                        elegante e focada na adoção (não apenas entretenimento).
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>🔍 Matching Inteligente</h3>
+                    <p>
+                        Petfinder tem quiz de personalidade. Petlovers pode criar um sistema de matching baseado
+                        em estilo de vida, espaço disponível e preferências.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>📊 Transparência no Processo</h3>
+                    <p>
+                        Mostrar claramente as etapas da adoção, documentos necessários e tempo estimado.
+                        Muitos apps falham em comunicar isso claramente.
+                    </p>
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h3>🎯 Recomendações Estratégicas</h3>
+                <ul>
+                    <li><strong>Diferenciação pelo Design:</strong> Manter o foco em design premium e minimalista como
+                        principal diferencial</li>
+                    <li><strong>Onboarding Personalizado:</strong> Criar quiz inicial para entender perfil do adotante
+                        (inspirado no Petfinder)</li>
+                    <li><strong>Integração com ONGs:</strong> Estabelecer parcerias sólidas como Adote Petz e Hyppet
+                    </li>
+                    <li><strong>Recursos de Vídeo:</strong> Adicionar vídeos curtos dos pets de forma elegante (não
+                        copiar TikTok)</li>
+                    <li><strong>Comunidade Ativa:</strong> Criar seção de histórias de sucesso, dicas de cuidados e
+                        eventos locais</li>
+                    <li><strong>Gamificação Sutil:</strong> Badges para adotantes, conquistas por ações responsáveis
+                    </li>
+                    <li><strong>Transparência Total:</strong> Dashboard mostrando status da adoção em tempo real</li>
+                    <li><strong>Suporte Pós-Adoção:</strong> Checklist de cuidados, lembretes de vacinas, dicas
+                        personalizadas</li>
+                    <li><strong>Acessibilidade:</strong> Garantir que o app seja acessível para todos os públicos</li>
+                    <li><strong>Performance:</strong> App rápido e leve, funcionando bem em conexões mais lentas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Conclusão -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Conclusão
+            </h2>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-primary); margin-bottom: 1.5rem;">
+                O mercado de adoção de animais no Brasil está maduro para disrupção. Enquanto apps como
+                <strong>Hyppet</strong> e <strong>Adote Petz</strong> dominam em termos de volume e parcerias,
+                há uma clara oportunidade para o <strong>Petlovers</strong> se posicionar como a opção
+                <strong>premium, moderna e centrada no usuário</strong>.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-primary); margin-bottom: 1.5rem;">
+                Os competidores internacionais como <strong>Petfinder</strong> mostram o caminho em termos de
+                funcionalidades avançadas (busca visual, quiz de matching), mas não estão disponíveis no Brasil.
+                Isso cria uma janela de oportunidade para trazer essas inovações ao mercado brasileiro.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-primary);">
+                <strong>Vantagem Competitiva do Petlovers:</strong> Design excepcional + UX premium +
+                Funcionalidades modernas + Foco no público urbano de classe B/C = Posicionamento único no mercado.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
