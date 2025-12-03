@@ -32,7 +32,7 @@ O Petlovers é um aplicativo de adoção de animais que visa simplificar e human
 
 ## 🚀 Como Visualizar
 
-Acesse o site publicado: [Petlovers Portfolio](https://seu-usuario.github.io/petlovers-portfolio)
+Acesse o site publicado: [Petlovers Portfolio](https://claricerochass.github.io/petlovers-portfolio/portfolio.html)
 
 Ou rode localmente:
 1. Clone o repositório
