@@ -4,7 +4,7 @@ Site portfólio do projeto Petlovers - App de adoção de animais com design min
 
 ## 🐾 Sobre o Projeto
 
-O Petlovers é um aplicativo de adoção de animais que visa simplificar e humanizar o processo de adoção responsável no Brasil. Este portfólio apresenta:
+Projeto completo usando o Antigravity, a nova IDE de IA da Google. Usando prompts de comando, conduzi um projeto completo de UX, da pesquisa à interface final. O Petlovers é um aplicativo de adoção de animais que visa simplificar e humanizar o processo de adoção responsável no Brasil. Este portfólio apresenta:
 
 - **Benchmarking**: Análise competitiva de 12+ apps de adoção
 - **Jornadas de Usuários**: 3 personas detalhadas
